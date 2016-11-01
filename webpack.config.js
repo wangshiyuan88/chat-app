@@ -33,12 +33,27 @@ module.exports = {
         ],
         query: {
             presets: [ 'es2015', 'react' ]
-        }
+        },
+        exclude: '/node_modules/'
       },
       {
-        test: /\.css?$/,
-        loaders: ['style', 'raw']
-        }
+        test: /\.scss?$/,
+        loaders: ['style', 'css', 'sass'],
+        include: [
+            PATH.resolve(__dirname, 'public', 'scss')
+        ]
+      }
+    //   {
+    //     test: /\.(png|jpg)?$/,
+    //     loader: 'file',
+    //     include: [
+    //         PATH.resolve(__dirname, 'public', 'img')
+    //     ],
+    //     query: {
+    //         mimetype: 'image/png',
+    //         name: 'public/img/[name].[ext]'
+    //     }
+    //   }
     ]
   },
   resolve: {
