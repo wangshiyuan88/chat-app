@@ -1,0 +1,17 @@
+
+@mixin background-image {
+    background-image: url(#{$imgPath}/star_horizon-wallpaper-1600x900.jpg);
+    display: block;
+    position: fixed;
+    background-size: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+@mixin whole-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}

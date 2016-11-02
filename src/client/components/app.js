@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 export default class App extends Component {
@@ -26,12 +27,10 @@ export default class App extends Component {
 
   render() {
     const { counter } = this.state;
-
     return (
-      <header>
-        <div>Webpack is doing its thing with React and ES2015....</div>
-        <div>{counter}</div>
-      </header>
+        <MuiThemeProvider>
+            {this.props.children}
+        </MuiThemeProvider>
     );
   }
 }

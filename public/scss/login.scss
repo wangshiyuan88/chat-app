@@ -1,0 +1,15 @@
+.login {
+    @include background-image;
+    @include whole-screen;
+}
+
+.paper {
+    background: rgba(255, 255, 255, 0.2) !important;
+    top: 25%;
+    bottom: 30%;
+    left: 38%;
+    right: 38%;
+    padding: 10px;
+    position: absolute;
+    z-index: 2
+}
