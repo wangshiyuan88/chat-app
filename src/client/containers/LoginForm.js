@@ -4,7 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import { login } from '../actions';
 import { TextField } from 'redux-form-material-ui';
-import { CenterContainer } from '../components/CenterContainer'
+import CenterContainer from '../components/CenterContainer';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
 class LoginForm extends Component {
 
@@ -55,7 +56,7 @@ class LoginForm extends Component {
             'submit': {
                 label: 'LOGIN',
                 type: 'submit',
-                primary: True,
+                primary: true,
                 component: RaisedButton,
                 parentStyle: {
                     'marginTop': '20px'
@@ -70,7 +71,7 @@ class LoginForm extends Component {
                     <div style={{'textAlign': 'center', 'marginTop': '20px'}}>
                         <Link to={'/signup'}>No account? Connect with Google</Link>
                     </div>
-                    {this.renderField(fieldProps['submit'])}
+                    <GoogleLoginButton/>
                 </form>
 
         );

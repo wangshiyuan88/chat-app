@@ -7,7 +7,7 @@ const className = 'login';
 const zDepth = 5;
 const paperClass = 'paper';
 
-const Login = () => {
+export default () => {
     return (
         <div className={className}>
             <Paper className={paperClass} zDepth={zDepth}>
@@ -16,5 +16,3 @@ const Login = () => {
         </div>
     )
 };
-
-export default Login;
