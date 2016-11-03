@@ -1,14 +1,33 @@
 .login {
     @include background-image;
     @include whole-screen;
+    .login-form {
+        .form-title {
+            text-align: center;
+            color: white;
+        }
+        .textfield{
+            margin-left: auto;
+            margin-right: auto;
+            width: 80% !important;
+            max-width: 400px;
+            min-width: 200px;
+        }
+        button{
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+    }
 }
 
+
 .paper {
-    background: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(5, 49, 23, 0.2) !important;
     top: 25%;
     bottom: 30%;
-    left: 38%;
-    right: 38%;
+    left: 30%;
+    right: 30%;
     padding: 10px;
     position: absolute;
     z-index: 2

@@ -1,39 +1,78 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router';
+import { login } from '../actions';
+import { TextField } from 'redux-form-material-ui';
+import { CenterContainer } from '../components/CenterContainer'
 
 class LoginForm extends Component {
 
+
     onSubmit(props) {
-    // this.props.createPost(props)
-    //   .then(() => {
-    //     // blog post has been created, navigate the user to the index
-    //     // We navigate by calling this.context.router.push with the
-    //     // new path to navigate to.
-    //     this.context.router.push('/');
-    //   });
+        console.log(props);
     }
 
-    renderInput(field) {
-        return(
-                <div className={`form-group ${field.meta.touched && field.meta.invalid ? 'has-danger' : ''}`}>
-                    <label>{field.name}</label>
-                    <input {...field.input} type={field.type}/>  // Type specified below in <Field>
-                    {field.meta.touched &&
-                     field.meta.error &&
-                     <span className="error">{field.meta.error}</span>}
-                 </div>
+    renderField(props) {
+        if (props.type!=='submit'){
+            return (
+                <CenterContainer style={props.parentStyle}>
+                    <Field {...props}/>
+                </CenterContainer>
             )
+        }else{
+            return (
+                <CenterContainer style={props.parentStyle}>
+                    <RaisedButton {...props}/>
+                </CenterContainer>
+            )
+        }
     }
 
     render() {
         const { handleSubmit } = this.props;
+        const fieldProps = {
+            'username': {
+                type: 'text',
+                hintText: 'Username...',
+                hintStyle: {
+                    'color': 'white'
+                },
+                className: 'textfield',
+                component: TextField,
+                name: 'username'
+            },
+            'password': {
+                type: 'text',
+                hintText: 'Password..',
+                hintStyle: {
+                    'color': 'white'
+                },
+                className: 'textfield',
+                component: TextField,
+                name: 'passpord'
+            },
+            'submit': {
+                label: 'LOGIN',
+                type: 'submit',
+                primary: True,
+                component: RaisedButton,
+                parentStyle: {
+                    'marginTop': '20px'
+                }
+            },
+        }
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <h3>Welcome</h3>
-                <Field type="text" name="email" className="form-control" component={this.renderInput} />
-                <Field type="text" name="password" className="form-control" component={this.renderInput} />
-                <button type="submit" className="btn btn-primary">Login</button>
-            </form>
+                <form className="login-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <h3 className="form-title">WELCOME</h3>
+                    {this.renderField(fieldProps['username'])}
+                    {this.renderField(fieldProps['password'])}
+                    <div style={{'textAlign': 'center', 'marginTop': '20px'}}>
+                        <Link to={'/signup'}>No account? Connect with Google</Link>
+                    </div>
+                    {this.renderField(fieldProps['submit'])}
+                </form>
+
         );
     }
 }
@@ -42,11 +81,11 @@ function validate(values) {
   const errors = {};
 
   if (!values.email) {
-    errors.title = 'Please enter a valid email';
+    errors.title = 'Please enter username';
   }
 
   if(!values.password) {
-    errors.content = 'Please enter a password';
+    errors.content = 'Please enter password';
   }
 
   return errors;
@@ -54,6 +93,5 @@ function validate(values) {
 
 export default reduxForm({
   form: 'LoginForm',
-  //fields: ['email', 'password'],
   validate
-}, null, null)(LoginForm);
+}, null, { login })(LoginForm);

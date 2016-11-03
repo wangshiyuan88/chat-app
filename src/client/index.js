@@ -7,6 +7,7 @@ import React from "react";
 import reducers from './reducers';
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
 injectTapEventPlugin();
 
 require('../../public/scss/main.scss');

@@ -1,0 +1,7 @@
+{
+    "googleAuth": {
+        "clientID"      : "1042147797622-pik0fn75ag6cp0eg79db2kscc6n2qnlh.apps.googleusercontent.com",
+        "clientSecret"  : "your-client-secret-here",
+        "callbackURL"   : "http://localhost:3000/auth/google/callback"
+    }
+}
