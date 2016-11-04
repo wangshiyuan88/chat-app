@@ -1,26 +1,22 @@
 import axios from 'axios';
-import { IS_AUTHENTICATED } from '../constants/Types';
+import { IS_AUTHENTICATED, USER_INFO } from '../constants/Types';
 import { browserHistory } from 'react-router';
-import { LOGIN } from '../constants/Urls';
+import { GET_USER_INFO } from '../constants/Urls';
 
-function login({username, passpord}){
+function getUserInfo(){
     return (dispatch) => {
         var handleRes = function(res){
-            var loginSuccess = res.status === 200;
-            if(loginSuccess){
-                alert('Oh yeah');
-                //browserHistory.push('/chat');
-            }else {
-                alert('No No');
+            var chain = dispatch(res);
+            if(res.authenticated){
+                chain = chain.then(()=>browserHistory.push('/chat'))
             }
-            dispatch(loginSuccess);
+            return chain;
         }
-        axios.post(`${LOGIN}`, {username, passpord}).then(handleRes)
+        return axios.get(`${GET_USER_INFO}`).then(handleRes)
     }
 }
 
-
-function loginResult(result){
+function loginSuccess(result){
     return {
         type: IS_AUTHENTICATED,
         result: result

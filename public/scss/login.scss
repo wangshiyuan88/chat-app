@@ -19,41 +19,10 @@
             width: 40%;
         }
         .google-signin-button{
-            background: url(#{$imgPath}/google.png);
             background-size: cover;
-            width: 200px;
+            width: 250px;
             height: 50px;
-            // display: inline-block;
-            // color: #444;
-            // width: 190px;
-            // border-radius: 5px;
-            // border: thin solid #888;
-            // box-shadow: 1px 1px 1px grey;
-            // white-space: nowrap;
-            // :hover {
-            //   cursor: pointer;
-            // }
-            // span.label {
-            //   font-family: serif;
-            //   font-weight: normal;
-            // }
-            // span.icon {
-            //
-            //   display: inline-block;
-            //   vertical-align: middle;
-            //   width: 42px;
-            //   height: 42px;
-            // }
-            // span.buttonText {
-            //   display: inline-block;
-            //   vertical-align: middle;
-            //   padding-left: 42px;
-            //   padding-right: 42px;
-            //   font-size: 14px;
-            //   font-weight: bold;
-            //   /* Use the Roboto font that is loaded in the <head> */
-            //   font-family: 'Roboto', sans-serif;
-            // }
+            background-color: rgba(255, 255, 255, 0.5) !important;
         }
     }
 }
@@ -61,8 +30,8 @@
 
 .paper {
     background: rgba(5, 49, 23, 0.2) !important;
-    top: 25%;
-    bottom: 30%;
+    top: 30%;
+    bottom: 44%;
     left: 30%;
     right: 30%;
     padding: 10px;

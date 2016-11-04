@@ -8,91 +8,15 @@ import CenterContainer from '../components/CenterContainer';
 import GoogleLoginButton from '../components/GoogleLoginButton';
 
 class LoginForm extends Component {
-
-
-    onSubmit(props) {
-        console.log(props);
-    }
-
-    renderField(props) {
-        if (props.type!=='submit'){
-            return (
-                <CenterContainer style={props.parentStyle}>
-                    <Field {...props}/>
-                </CenterContainer>
-            )
-        }else{
-            return (
-                <CenterContainer style={props.parentStyle}>
-                    <RaisedButton {...props}/>
-                </CenterContainer>
-            )
-        }
-    }
-
     render() {
-        const { handleSubmit } = this.props;
-        const fieldProps = {
-            'username': {
-                type: 'text',
-                hintText: 'Username...',
-                hintStyle: {
-                    'color': 'white'
-                },
-                className: 'textfield',
-                component: TextField,
-                name: 'username'
-            },
-            'password': {
-                type: 'text',
-                hintText: 'Password..',
-                hintStyle: {
-                    'color': 'white'
-                },
-                className: 'textfield',
-                component: TextField,
-                name: 'passpord'
-            },
-            'submit': {
-                label: 'LOGIN',
-                type: 'submit',
-                primary: true,
-                component: RaisedButton,
-                parentStyle: {
-                    'marginTop': '20px'
-                }
-            },
-        }
         return (
-                <form className="login-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <div className="login-form">
                     <h3 className="form-title">WELCOME</h3>
-                    {this.renderField(fieldProps['username'])}
-                    {this.renderField(fieldProps['password'])}
-                    <div style={{'textAlign': 'center', 'marginTop': '20px'}}>
-                        <Link to={'/signup'}>No account? Connect with Google</Link>
-                    </div>
                     <GoogleLoginButton/>
-                </form>
+                </div>
 
         );
     }
 }
 
-function validate(values) {
-  const errors = {};
-
-  if (!values.email) {
-    errors.title = 'Please enter username';
-  }
-
-  if(!values.password) {
-    errors.content = 'Please enter password';
-  }
-
-  return errors;
-}
-
-export default reduxForm({
-  form: 'LoginForm',
-  validate
-}, null, { login })(LoginForm);
+export default LoginForm;

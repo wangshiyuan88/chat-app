@@ -1,6 +1,6 @@
-import EXPRESS from 'express';
-import PATH from 'path';
+import express from 'express';
+import path from 'path';
 
 export default function setup(app){
-    app.use('/', EXPRESS.static(PATH.resolve(__dirname, '../../../', 'public')));
+    app.use('/', express.static(path.resolve(__dirname, '../../../', 'public')));
 }

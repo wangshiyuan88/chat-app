@@ -1,22 +1,31 @@
-import { Strategy as LocalStrategy } from 'passport-local';
+import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth';
 import User from '../models/User';
+import googleAuth from '../config/authConfig';
+import logger from '../logger';
 
 
 export default function setup(app, passport){
     setupSession(passport);
-    setupLocal(passport);
+    setupGoogleStrategy(passport);
     setupRoute(app, passport);
 }
 
-function setupLocal(passport){
-    passport.use(new LocalStrategy(
-      function(username, password, done) {
-        User.findOne({ username: username }, function (err, user) {
-          if (err) { return done(err); }
-          if (!user) { return done(null, false); }
-          return user.comparePassword(password)? done(null, user) : done(null, false)
-        });
-      }
+function setupGoogleStrategy(passport){
+    passport.use(new GoogleStrategy(
+        googleAuth,
+        function(accessToken, refreshToken, profile, done) {
+            let googleId = profile.id,
+                displayName = profile.displayName,
+                email = profile.emails[0].value,
+                photo = profile.photos[0].value;
+            User.findOrCreate({googleId}, {displayName, email, photo}, function(err, user){
+                if(err){
+                    done(err, null);
+                }else{
+                    done(null, user);
+                }
+            })
+        }
     ));
 }
 
@@ -26,14 +35,30 @@ function setupSession(passport){
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
+        var findById = (id) => {
+            return User.findById(id);
+        }
+        Promise.resolve(googleId).then(findById).then(user => done(null, user))
+        .catch(error => logger.log('error', 'Error when deserializing the user: ' + error));
     });
 }
 
+
+
 function setupRoute(app, passport){
-    app.post('/login', passport.authenticate('local'), function(req, res){
-        res.send('authenticated');
-    })
+    app.get('/auth/google', passport.authenticate('google', { scope: ['openid email profile'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            failureRedirect: '/'
+        }),
+        function(req, res) {
+            // Authenticated successfully
+            res.redirect('/');
+        }
+    );
+
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 }

@@ -1,3 +1,3 @@
 export default {
-    LOGIN: '/login'
+    GET_USER_INFO: '/api/userInfo'
 }
