@@ -19,7 +19,7 @@ export default (props) => {
     });
     return (
         <Drawer docked={true} open={true} containerClassName="friend-panel">
-            <Subheader>Talkers</Subheader>
+            <Subheader style={{'color': 'white'}}>Talkers</Subheader>
             {renderFriends}
         </Drawer>
     );

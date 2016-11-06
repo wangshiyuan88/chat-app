@@ -67,7 +67,7 @@ function setupRoute(app, passport){
     );
 
     app.get('/logout', function(req, res) {
-        req.logout();
+        req.session.destroy();
         res.json({
             authenticated: false,
             _id: null,

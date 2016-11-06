@@ -10,9 +10,6 @@ import { signOut } from '../actions/auth';
 
 
 export class Chat extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     this.props.joinChannel();

@@ -3,8 +3,6 @@ import Avatar from 'material-ui/Avatar';
 import ListItem from 'material-ui/List/ListItem';
 
 export default (props) => {
-    console.log('From List Item')
-    console.log(props);
     const avaStyle = {
         'margiRight': '2px',
         'borderRadius': '0px'

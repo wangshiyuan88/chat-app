@@ -8,7 +8,6 @@
         padding-top: 8px;
     }
     .friend-panel{
-        //background-color: rgb(2, 175, 245) !important;
         background-color: #3e3e3e !important;
     }
     .message-panel{
@@ -21,6 +20,7 @@
             position: relative;
             height: 82%;
             width: 100%;
+            overflow: scroll;
             .message-meta{
                 div {
                     display: inline-block;
@@ -39,7 +39,7 @@
         }
         .message-input-panel{
             position: relative;
-            height: 15%;
+            height: 13%;
             margin-left: auto;
             margin-right: auto;
             width: 98%;

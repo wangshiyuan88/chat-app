@@ -17,8 +17,10 @@ export default (server) => {
                 case SOCKET_CONSTANTS.NEW_MESSAGE:
                     broastCastMessage(socket, action.payload);
                     saveMessage(action.payload);
+                    break;
                 case SOCKET_CONSTANTS.PULL_MORE:
                     pullMessage(socket, action.payload);
+                    break;
                 default:
                     break;
             }
@@ -57,6 +59,7 @@ function getFriends(socket){
 }
 
 function pullMessage(socket, start){
+
     var query = Message.find().skip(start).limit(SOCKET_CONSTANTS.BATCH_MESSAGE_SIZE).sort('-time');
     var reply = (messages) => {
         var messages = messages.reverse();

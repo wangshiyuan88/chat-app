@@ -2,7 +2,6 @@ import { render } from "react-dom";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, hashHistory } from 'react-router';
-import SocketContext from 'react-socket-context';
 import thunk from 'redux-thunk';
 import React from "react";
 import reducers from './reducers';
@@ -24,10 +23,6 @@ const store = createStore(
     applyMiddleware(thunk, socketIoMiddleware)
 )
 const containerEl = document.getElementById("container");
-
-// store.subscribe(()=>{
-//   console.log('new client state', store.getState());
-// });
 
 render(
     <Provider store={store}>
