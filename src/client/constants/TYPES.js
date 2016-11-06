@@ -1,4 +1,4 @@
-import { GET_ALL_FRIENDS, ENTER_ROOM } from '../../common/SocketConstants';
+import { GET_ALL_FRIENDS, ENTER_ROOM, NEW_MESSAGE, BROCAST_MESSAGE, PULL_MORE, NEW_BACTH_MESSAGES } from '../../common/SocketConstants';
 
 // export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
 // export const USER_INFO = 'USER_INFO';
@@ -9,6 +9,7 @@ import { GET_ALL_FRIENDS, ENTER_ROOM } from '../../common/SocketConstants';
 const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
 const USER_INFO = 'USER_INFO';
 const SIGN_OUT = 'SIGN_OUT';
+const NEW_SELF_MESSAGE = 'NEW_SELF_MESSAGE';
 
 
 module.exports = {
@@ -16,5 +17,10 @@ module.exports = {
     USER_INFO,
     SIGN_OUT,
     GET_ALL_FRIENDS,
-    ENTER_ROOM
+    ENTER_ROOM,
+    NEW_MESSAGE,
+    NEW_SELF_MESSAGE,
+    BROCAST_MESSAGE,
+    PULL_MORE.
+    NEW_BACTH_MESSAGES
 }

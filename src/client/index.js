@@ -25,9 +25,9 @@ const store = createStore(
 )
 const containerEl = document.getElementById("container");
 
-store.subscribe(()=>{
-  console.log('new client state', store.getState());
-});
+// store.subscribe(()=>{
+//   console.log('new client state', store.getState());
+// });
 
 render(
     <Provider store={store}>

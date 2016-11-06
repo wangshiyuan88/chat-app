@@ -1,8 +1,7 @@
 import SocketIo from 'socket.io';
-
-import { CONNECTION, ENTER_ROOM, LEAVE_ROOM, CHANNEL_NAME, NEW_MESSAGE, PULL_MORE_MESSAGE, CHAT_PATH, SERVER_ACTION } from '../../common/SocketConstants';
 import * as SOCKET_CONSTANTS from '../../common/SocketConstants';
 import * as utils from '../utils';
+import Message from '../models/Message';
 //Only support one channel now
 export default (server) => {
     const io = new SocketIo(server);
@@ -14,8 +13,11 @@ export default (server) => {
             //Pull history message, emit to target user
             switch (action.type) {
                 case SOCKET_CONSTANTS.ENTER_ROOM:
-                    enterRoom(socket);
+                    getFriends(socket);
                     break;
+                case SOCKET_CONSTANTS.NEW_MESSAGE:
+                    broastCastMessage(socket, action.payload);
+                    saveMessage(action.payload);
                 default:
                     break;
             }
@@ -33,7 +35,27 @@ export default (server) => {
     })
 }
 
-function enterRoom(socket){
+function broastCastMessage(socket, message){
+    //Broadcast message
+    var body = {
+        type: SOCKET_CONSTANTS.BROCAST_MESSAGE,
+        payload: message
+    }
+    socket.broadcast.emit(SOCKET_CONSTANTS.SERVER_ACTION, body)
+}
+
+function saveMessage(message){
+    new Message(message).save(function(err, message){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('Message got saved!');
+            console.log(message);
+        }
+    });
+}
+
+function getFriends(socket){
     var reply = (data) => {
         var body = {
             type: SOCKET_CONSTANTS.GET_ALL_FRIENDS,

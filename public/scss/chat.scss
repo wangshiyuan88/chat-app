@@ -20,6 +20,21 @@
             position: relative;
             height: 82%;
             width: 100%;
+            .message-meta{
+                div {
+                    display: inline-block;
+                }
+                .message-sender-name{
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+                .message-time{
+                    font-weight: lighter;
+                }
+            }
+            .message-content{
+                margin-top: 10px;
+            }
         }
         .message-input-panel{
             position: relative;

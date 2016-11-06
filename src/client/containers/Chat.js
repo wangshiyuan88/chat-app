@@ -19,28 +19,38 @@ export class Chat extends Component {
   }
 
   render() {
+    var {displayName, userID, photo, googleId} = this.props;
+    var user = {
+        displayName,
+        userID,
+        photo,
+        googleId,
+    }
+    console.log('From Chat');
+    console.log(this.props.messages);
     return (
         <div className="chat-panel">
             <UserHeader displayName={this.props.displayName} photo={this.props.photo} signOut={this.props.signOut}/>
             <FriendPanel className="friend-panel" friends={this.props.friends}/>
             <div className="message-panel">
-                <MessageDisplayPanel />
-                <MessageInputPanel />
+                <MessageDisplayPanel messages={this.props.messages}/>
+                <MessageInputPanel {...this.props} user={user}/>
             </div>
         </div>
     );
   }
-}
+}1
 
 
-function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googleId}, chat: {friends} }){
+function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googleId}, chat: { friends, messages } }){
     return {
         displayName,
         authenticated,
         userID: _id,
         photo,
         googleId,
-        friends
+        friends,
+        messages
     }
 }
 

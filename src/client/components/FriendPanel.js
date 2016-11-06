@@ -12,7 +12,7 @@ export default (props) => {
     var renderFriends = [];
     friends.forEach(function(e){
         renderFriends.push(
-            <ListItem key={e._id} primaryText={e.displayName} leftAvatar={
+            <ListItem disable={true} key={e._id} primaryText={e.displayName} leftAvatar={
                 <Avatar src={e.photo} />
             } />
         );
