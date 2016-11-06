@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 
-import LoginForm from '../containers/LoginForm';
+import LoginForm from './LoginForm';
 
 const className = 'login';
 const zDepth = 5;

@@ -23,7 +23,7 @@ export const getUserInfo = () => {
     }
 }
 
-export function signOut(){
+export const signOut = () => {
     return (dispatch) => {
         var handleRes = function(res){
             var chain = Promise.resolve(dispatch({

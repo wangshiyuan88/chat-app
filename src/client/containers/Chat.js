@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FriendPanel from '../components/FriendPanel';
 import UserHeader from '../components/UserHeader';
-import MessageInputPanel from '../containers/MessageInputPanel';
-import MessageDisplayPanel from '../containers/MessageDisplayPanel';
+import MessageInputPanel from '../components/MessageInputPanel';
+import MessageDisplayPanel from '../components/MessageDisplayPanel';
 
-import * as actions from '../actions/chat'
+import * as actions from '../actions/chat';
+import { signOut } from '../actions/auth';
+
 
 export class Chat extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ export class Chat extends Component {
   render() {
     return (
         <div className="chat-panel">
-            <UserHeader displayName={this.props.displayName} photo={this.props.photo}/>
+            <UserHeader displayName={this.props.displayName} photo={this.props.photo} signOut={this.props.signOut}/>
             <FriendPanel className="friend-panel" friends={this.props.friends}/>
             <div className="message-panel">
                 <MessageDisplayPanel />
@@ -44,4 +46,4 @@ function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googl
 
 
 
-export default connect( mapsStateToProps, {...actions} )(Chat);
+export default connect( mapsStateToProps, {...actions, signOut} )(Chat);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
-import UserSetting from '../containers/UserSetting';
+import UserSetting from './UserSetting';
 
 export default (props) => {
     return (
@@ -10,7 +10,7 @@ export default (props) => {
             <ToolbarTitle text={props.displayName} />
             <img className="profile-img" src={props.photo}/>
             <ToolbarSeparator />
-            <UserSetting />
+            <UserSetting signOut={props.signOut}/>
         </ToolbarGroup>
       </Toolbar>
     );
