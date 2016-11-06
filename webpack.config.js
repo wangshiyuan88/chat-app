@@ -14,12 +14,7 @@ module.exports = {
   },
   plugins: [
     new WEBPACK.optimize.OccurenceOrderPlugin(),
-    new WEBPACK.NoErrorsPlugin(),
-    new WEBPACK.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        }
-    })
+    new WEBPACK.NoErrorsPlugin()
   ],
   module: {
     loaders: [
