@@ -1,12 +1,17 @@
-import { IS_AUTHENTICATED } from '../constants/Types';
+import { IS_AUTHENTICATED, USER_INFO, SIGN_OUT } from '../constants/Types';
 
-export default function(state=[], action) {
+export default function(state={}, action) {
     switch (action.type) {
-        case IS_AUTHENTICATED:
+        case SIGN_OUT:
             return {
                 ...state,
-                IS_AUTHENTICATED : action.result
+                ...action.payload
             };
+        case USER_INFO:
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {getUserInfo} from '../actions/auth';
 
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+export class App extends Component {
 
   componentWillMount() {
+      this.props.getUserInfo();
   }
 
   render() {
@@ -18,3 +18,6 @@ export default class App extends Component {
     );
   }
 }
+
+
+export default connect( null, { getUserInfo } )(App);

@@ -1,5 +1,5 @@
-import { login } from './auth'
+import { getUserInfo } from './auth';
 
 export default {
-    login
+    getUserInfo
 }

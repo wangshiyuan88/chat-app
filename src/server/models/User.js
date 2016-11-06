@@ -8,7 +8,6 @@ const { Schema } = mongoose;
 var UserSchema = new Schema({
     googleId: {
         type: String,
-        unique: true,
         required: true
     },
     displayName: {

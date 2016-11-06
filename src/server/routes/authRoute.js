@@ -31,14 +31,23 @@ function setupGoogleStrategy(passport){
 
 function setupSession(passport){
     passport.serializeUser(function(user, done) {
-      done(null, user.id);
+      done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {
         var findById = (id) => {
             return User.findById(id);
         }
-        Promise.resolve(googleId).then(findById).then(user => done(null, user))
+        Promise.resolve(id).then(findById).then((user) => {
+            var { _id, googleId, displayName, email, photo } = user;
+            done(null, {
+                _id,
+                googleId,
+                displayName,
+                email,
+                photo
+            })
+        })
         .catch(error => logger.log('error', 'Error when deserializing the user: ' + error));
     });
 }
@@ -59,6 +68,13 @@ function setupRoute(app, passport){
 
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.json({
+            authenticated: false,
+            _id: null,
+            googleId: null,
+            displayName: null,
+            email: null,
+            photo: null
+        });
     });
 }
