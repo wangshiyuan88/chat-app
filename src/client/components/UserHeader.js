@@ -10,7 +10,7 @@ export default (props) => {
             <ToolbarTitle text={props.displayName} />
             <img className="profile-img" src={props.photo}/>
             <ToolbarSeparator />
-            <UserSetting signOut={props.signOut}/>
+            <UserSetting signOut={props.signOut} start={props.start} pullMoreMessage={props.pullMoreMessage}/>
         </ToolbarGroup>
       </Toolbar>
     );

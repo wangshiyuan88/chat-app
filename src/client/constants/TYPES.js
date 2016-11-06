@@ -21,6 +21,6 @@ module.exports = {
     NEW_MESSAGE,
     NEW_SELF_MESSAGE,
     BROCAST_MESSAGE,
-    PULL_MORE.
+    PULL_MORE,
     NEW_BACTH_MESSAGES
 }

@@ -6,32 +6,23 @@ import Message from '../models/Message';
 export default (server) => {
     const io = new SocketIo(server);
     io.on(SOCKET_CONSTANTS.CONNECTION, function(socket){
-        console.log('Get Connected!');
-        // socket.join(SOCKET_CONSTANTS.CHANNEL_NAME);
         socket.on(SOCKET_CONSTANTS.SERVER_ACTION, function(action){
             //Broadcast update friend list event
             //Pull history message, emit to target user
             switch (action.type) {
                 case SOCKET_CONSTANTS.ENTER_ROOM:
                     getFriends(socket);
+                    pullMessage(socket, 0);
                     break;
                 case SOCKET_CONSTANTS.NEW_MESSAGE:
                     broastCastMessage(socket, action.payload);
                     saveMessage(action.payload);
+                case SOCKET_CONSTANTS.PULL_MORE:
+                    pullMessage(socket, action.payload);
                 default:
                     break;
             }
         });
-        // socket.on(LEAVE_ROOM, function(){
-        //     //Broadcast update friend list event
-        // });
-        // socket.on(NEW_MESSAGE, function(){
-        //     //Save new message to DB
-        //     //Broadcast update message list event
-        // });
-        // socket.on(PULL_MORE_MESSAGE, function(){
-        //     //Pull more message from DB and send back to target user
-        // });
     })
 }
 
@@ -48,9 +39,6 @@ function saveMessage(message){
     new Message(message).save(function(err, message){
         if(err){
             console.log(err);
-        }else{
-            console.log('Message got saved!');
-            console.log(message);
         }
     });
 }
@@ -66,4 +54,20 @@ function getFriends(socket){
         socket.emit(SOCKET_CONSTANTS.SERVER_ACTION, body);
     }
     utils.getUsers().then(reply);
+}
+
+function pullMessage(socket, start){
+    var query = Message.find().skip(start).limit(SOCKET_CONSTANTS.BATCH_MESSAGE_SIZE).sort('-time');
+    var reply = (messages) => {
+        var messages = messages.reverse();
+        var body = {
+            type: SOCKET_CONSTANTS.NEW_BACTH_MESSAGES,
+            payload: {
+                messages,
+                start: start + messages.length
+            }
+        }
+        socket.emit(SOCKET_CONSTANTS.SERVER_ACTION, body);
+    }
+    Promise.resolve(query).then(reply);
 }

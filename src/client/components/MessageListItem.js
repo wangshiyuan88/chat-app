@@ -14,7 +14,7 @@ export default (props) => {
         <Avatar key={key+'-avatar'} src={props.user.photo} size={30} style={avaStyle} />
     )
     return (
-        <ListItem key={key} disabled={true} leftAvatar={avatar} disabled={true}>
+        <ListItem key={key} disabled={true} leftAvatar={avatar}>
             <div className="message-meta" key={key+'-message-meta'}>
                 <div className="message-sender-name" key={key+'-message-sender-name'}>{props.user.displayName}</div>
                 <div className="message-time" key={key+'-message-time'}>{props.time.toLocaleString()}</div>

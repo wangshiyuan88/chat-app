@@ -26,11 +26,9 @@ export class Chat extends Component {
         photo,
         googleId,
     }
-    console.log('From Chat');
-    console.log(this.props.messages);
     return (
         <div className="chat-panel">
-            <UserHeader displayName={this.props.displayName} photo={this.props.photo} signOut={this.props.signOut}/>
+            <UserHeader displayName={this.props.displayName} photo={this.props.photo} signOut={this.props.signOut} start={this.props.start} pullMoreMessage={this.props.pullMoreMessage}/>
             <FriendPanel className="friend-panel" friends={this.props.friends}/>
             <div className="message-panel">
                 <MessageDisplayPanel messages={this.props.messages}/>
@@ -39,10 +37,10 @@ export class Chat extends Component {
         </div>
     );
   }
-}1
+}
 
 
-function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googleId}, chat: { friends, messages } }){
+function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googleId}, chat: { friends, messages, start } }){
     return {
         displayName,
         authenticated,
@@ -50,7 +48,8 @@ function mapsStateToProps({ auth: {displayName, authenticated, _id, photo, googl
         photo,
         googleId,
         friends,
-        messages
+        messages,
+        start
     }
 }
 
