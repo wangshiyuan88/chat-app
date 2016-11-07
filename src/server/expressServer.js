@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-const REDIS_HOST = process.env.MONGOLAB_URI || config.REDIS_HOST;
+const REDIS_HOST = process.env.REDIS_HOST || config.REDIS_HOST;
 const REDIS_PORT = process.env.PORT || config.REDIS_PORT;
 
 var RedisStore = redisConnect(session);
