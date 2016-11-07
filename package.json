@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --watch --progress --colors --inline",
     "start": "NODE_ENV=production npm-run-all --parallel build server",
-    "server": "node src/server/server.js",
+    "server": "nodemon src/server/server.js",
     "build": "webpack"
   },
   "keywords": [
