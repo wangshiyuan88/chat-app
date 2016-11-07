@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({
 if(process.env.REDISTOGO_URL){
 	console.log('My session!');
 	app.use(session({
-		store: newRedisStore({
+		store: new RedisStore({
 			client: redis.createClient()
 		}),
 		secret: config.SESSION_SECRET
