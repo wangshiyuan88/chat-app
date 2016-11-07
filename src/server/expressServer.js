@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 const REDIS_HOST = process.env.REDIS_HOST || config.REDIS_HOST;
-const REDIS_PORT = process.env.PORT || config.REDIS_PORT;
+const REDIS_PORT = process.env.REDIS_PORT || config.REDIS_PORT;
 
 var RedisStore = redisConnect(session);
 app.use(session({
