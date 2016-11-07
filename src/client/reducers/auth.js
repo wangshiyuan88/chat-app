@@ -1,4 +1,4 @@
-import { IS_AUTHENTICATED, USER_INFO, SIGN_OUT } from '../constants/Types';
+import { IS_AUTHENTICATED, USER_INFO, SIGN_OUT } from '../constants/Constant';
 
 export default function(state={}, action) {
     switch (action.type) {

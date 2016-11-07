@@ -1,4 +1,4 @@
-import { GET_ALL_FRIENDS, NEW_SELF_MESSAGE, BROCAST_MESSAGE, NEW_BACTH_MESSAGES } from '../constants/Types';
+import { GET_ALL_FRIENDS, NEW_SELF_MESSAGE, BROCAST_MESSAGE, NEW_BACTH_MESSAGES } from '../constants/Constant';
 
 export default function(state={}, action) {
     switch (action.type) {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IS_AUTHENTICATED, USER_INFO, SIGN_OUT } from '../constants/Types';
+import { IS_AUTHENTICATED, USER_INFO, SIGN_OUT } from '../constants/Constant';
 import { hashHistory } from 'react-router';
 import { GET_USER_INFO, SIGN_OUT as SIGN_OUT_URL } from '../constants/Urls';
 

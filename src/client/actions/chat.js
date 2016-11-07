@@ -1,4 +1,4 @@
-import * as CONSTANTS from '../constants/Types';
+import * as CONSTANTS from '../constants/Constant';
 
 export const joinChannel = () => {
     return dispatch => {
