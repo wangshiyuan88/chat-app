@@ -56,6 +56,8 @@ const MONGOLAB_URI = process.env.MONGOLAB_URI || config.MONGOLAB_URI;
 const PORT = process.env.PORT || config.PORT;
 
 Mongoose.connect(MONGOLAB_URI);
+console.log('!!!!!!!!!!!!!!!!!');
+console.log(`MY PORT ${PORT}`);
 
 const server = app.listen(PORT, 'localhost', function(err) {
   if (err) {

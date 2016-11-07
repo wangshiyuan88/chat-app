@@ -1,7 +1,7 @@
 {
     "MONGOLAB_URI": "mongodb://test:test@ds145997.mlab.com:45997/chat-app",
-    "PORT": 3000,
-    "REDIS_HOST": "127.0.0.1",
+    "PORT": 5000,
+    "REDIS_HOST": "redis://redistogo:95c07dd725ac97764be29e5abfb59bb9@crestfish.redistogo.com:9166/",
     "REDIS_PORT": 6379,
     "SESSION_SECRET": "SECRET"
 }
