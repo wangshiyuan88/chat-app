@@ -20,6 +20,7 @@ import setupApiRoute from './routes/apiRoute';
 import logger from './logger';
 import setupSocket from './events';
 import { redirectMiddleware } from './middlewares';
+import redis from 'heroku-redis-client';
 
 
 const config = require('./config.json');
@@ -33,16 +34,26 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-const REDIS_HOST = process.env.REDIS_HOST || config.REDIS_HOST;
-const REDIS_PORT = process.env.PORT || config.REDIS_PORT;
+if(process.env.REDISTOGO_URL){
+	console.log('My session!');
+	app.use(session({
+		store: newRedisStore({
+			client: redis.createClient()
+		}),
+		secret: config.SESSION_SECRET
+	}));
+}else{
+	const REDIS_HOST = process.env.REDIS_HOST || config.REDIS_HOST;
+	const REDIS_PORT = process.env.PORT || config.REDIS_PORT;
+	var RedisStore = redisConnect(session);
+	app.use(session({
+		store: new RedisStore({
+			host: REDIS_HOST,
+			port: REDIS_PORT
+		}),
+		secret: config.SESSION_SECRET }));
+}
 
-var RedisStore = redisConnect(session);
-app.use(session({
-	store: new RedisStore({
-		host: REDIS_HOST,
-		port: REDIS_PORT
-	}),
-	secret: config.SESSION_SECRET }));
 
 app.use(passport.initialize());
 app.use(passport.session());

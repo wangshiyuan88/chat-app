@@ -35,6 +35,8 @@ function setupSession(passport){
     });
 
     passport.deserializeUser(function(id, done) {
+        console.log('Save me');
+        console.log(id);
         var findById = (id) => {
             return User.findById(id);
         }
