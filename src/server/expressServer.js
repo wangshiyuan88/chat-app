@@ -6,14 +6,12 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import morgan from 'morgan';
 import cors from 'cors';
-import webpack from 'webpack';
 import Mongoose from 'mongoose';
 import PATH from 'path';
 import passport from 'passport';
 import SocketIo from 'socket.io';
 import redisConnect from 'connect-redis';
 
-import webpackConfig from '../../webpack.config';
 import setupStaticRoute from './routes/staticRoute';
 import setupAuthRoute from './routes/authRoute';
 import setupApiRoute from './routes/apiRoute';
