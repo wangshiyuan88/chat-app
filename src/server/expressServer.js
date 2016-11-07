@@ -34,6 +34,8 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+var RedisStore = redisConnect(session);
+
 if(process.env.REDISTOGO_URL){
 	console.log('My session!');
 	app.use(session({
@@ -45,7 +47,6 @@ if(process.env.REDISTOGO_URL){
 }else{
 	const REDIS_HOST = process.env.REDIS_HOST || config.REDIS_HOST;
 	const REDIS_PORT = process.env.PORT || config.REDIS_PORT;
-	var RedisStore = redisConnect(session);
 	app.use(session({
 		store: new RedisStore({
 			host: REDIS_HOST,
