@@ -59,7 +59,7 @@ Mongoose.connect(MONGOLAB_URI);
 console.log('!!!!!!!!!!!!!!!!!');
 console.log(`MY PORT ${PORT}`);
 
-const server = app.listen(PORT, 'localhost', function(err) {
+const server = app.listen(PORT, function(err) {
   if (err) {
     logger.log(err);
     return;
