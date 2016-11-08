@@ -21,5 +21,10 @@
 1. Webpack
 
 ###Deploy
-1. Heroku 
- 
+1. Heroku
+
+###Resource related scale
+
+1. [Socket.io official document](http://socket.io/docs/using-multiple-nodes/)
+2. [Node cluster](https://github.com/indutny/sticky-session)
+3. [Niginx Sticky Session](http://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky)
